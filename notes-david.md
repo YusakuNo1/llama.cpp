@@ -27,5 +27,9 @@ snapshot_download(repo_id=model_id, local_dir="llama3.3_70B")
 `python ../convert_hf_to_gguf.py ./llama3.2_3B --outfile llama3.2_3B_q2.gguf --outtype q2_0`
 
 ## Run with server
+### Mac OSX
 * In folder `./build/bin`
 * Run `./llama-server -m ../../david_tests/phi3_q8.gguf`
+### Windows
+* In folder `./build/bin/Release`
+* (Windows) Run `llama-server.exe -m ../../../david_tests/phi3_q8.gguf`
