@@ -29,6 +29,10 @@ With image
 ./build/bin/llama-mtmd-cli -m models-custom/gemma-3-12b-it-q4_0.gguf --mmproj models-custom/mmproj-model-f16-12B.gguf --image ./surprise.png
 ```
 
+## Run embedding model (Not working)
+./build/bin/llama-embedding -m models-custom/jina-embeddings-v2-base-code-Q6_K.gguf -e -p "Hello world" --verbose-prompt -ngl 99
+
+
 # Run model with tools
 ```console
 llama-cli -m models-custom/Arch-Function-3B-Q8_0.gguf \

@@ -33,5 +33,7 @@ snapshot_download(repo_id=model_id, local_dir="llama3.3_70B")
 * In folder `./build/bin`
 * Run `./llama-server -m ../../david_tests/phi3_q8.gguf`
 
+# How to build for iOS (Apple)
 
-
+* Command: `./build-xcframework.sh`
+* Draft `build-apple/llama.xcframework` to xCode
