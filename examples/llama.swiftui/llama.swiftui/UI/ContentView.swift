@@ -57,7 +57,27 @@ struct ContentView: View {
 
     func sendText() {
         Task {
-            await llamaState.complete(text: multiLineText)
+            let _multiLineText = """
+You are a helpful assistant with access to the following tools:
+
+tools:
+- name: get_current_weather
+  description: Get the current weather in a given location.
+  parameters:
+    location: (string) The city and state, e.g., San Francisco, CA.
+    unit: (string, optional) The unit of temperature, either \"celsius\" or \"fahrenheit\".
+
+You can use these tools to answer user questions. When you need to use a tool, respond with a JSON object in the following format:
+{
+  \"tool_name\": \"name of the tool\",
+  \"tool_args\": { \"argument1\": \"value1\", \"argument2\": \"value2\" }
+}
+Do not use any other format. If you can answer without a tool, respond directly to the user.
+
+User: what is the weather in Seattle? Answer with unit of fahrenheit
+Assistant: 
+"""
+            await llamaState.complete(text: _multiLineText)
             multiLineText = ""
         }
     }

@@ -20,6 +20,7 @@
 		DD84C9FD2D747FED007778EC /* llama.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD84C9FC2D747FED007778EC /* llama.xcframework */; };
 		DD84C9FE2D747FED007778EC /* llama.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DD84C9FC2D747FED007778EC /* llama.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F1FE20E22B465ECA00B45541 /* LoadCustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FE20E12B465EC900B45541 /* LoadCustomButton.swift */; };
+		FCE90A192E6D165D0031A16C /* Qwen3-0.6B-Q4_K_M.gguf in Resources */ = {isa = PBXBuildFile; fileRef = FCE90A182E6D165D0031A16C /* Qwen3-0.6B-Q4_K_M.gguf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -51,6 +52,7 @@
 		DD84C9FC2D747FED007778EC /* llama.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = llama.xcframework; path = "../../build-apple/llama.xcframework"; sourceTree = "<group>"; };
 		DF2D2FE72B4A59BE00FCB72D /* llama.cpp */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = llama.cpp; path = ../..; sourceTree = "<group>"; };
 		F1FE20E12B465EC900B45541 /* LoadCustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadCustomButton.swift; sourceTree = "<group>"; };
+		FCE90A182E6D165D0031A16C /* Qwen3-0.6B-Q4_K_M.gguf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Qwen3-0.6B-Q4_K_M.gguf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +129,7 @@
 		8A907F312AC7134E006146EA /* llama.cpp.swift */ = {
 			isa = PBXGroup;
 			children = (
+				FCE90A182E6D165D0031A16C /* Qwen3-0.6B-Q4_K_M.gguf */,
 				8A907F322AC7134E006146EA /* LibLlama.swift */,
 			);
 			path = llama.cpp.swift;
@@ -217,6 +220,7 @@
 			files = (
 				8A3F84242AC4C891005E2EE8 /* models in Resources */,
 				8A1C837B2AC328BE0096AF73 /* Assets.xcassets in Resources */,
+				FCE90A192E6D165D0031A16C /* Qwen3-0.6B-Q4_K_M.gguf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,7 +370,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = K5UQJPP73A;
+				DEVELOPMENT_TEAM = 69L3789J9R;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -398,7 +402,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = K5UQJPP73A;
+				DEVELOPMENT_TEAM = 69L3789J9R;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

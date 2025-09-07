@@ -1,5 +1,6 @@
-# David's folders
+# David ignores
 david_tests/
+**/CMakeFiles/**/*.*
 
 # Extensions
 

@@ -1,13 +1,11 @@
-# Convert model
-```console
-python convert_hf_to_gguf.py models-custom/Qwen2-VL-2B-Instruct --outtype f32
-```
-
 # Convert model + quantize
 ```console
 python convert_hf_to_gguf.py models-custom/Arch-Agent-3B --outfile models-custom/Arch-Agent-3B-F16.gguf --outtype f16
 ./build/bin/llama-quantize models-custom/Arch-Agent-3B-F16.gguf models-custom/Arch-Agent-3B-Q4_K_M.gguf Q4_K_M
 ./build/bin/llama-quantize models-custom/Arch-Agent-3B-F16.gguf models-custom/Arch-Agent-3B-Q4_K_S.gguf Q4_K_S
+
+python convert_hf_to_gguf.py models-custom/Qwen3-0.6B --outfile models-custom/Qwen3-0.6B-F16.gguf --outtype f16
+./build/bin/llama-quantize models-custom/Qwen3-0.6B-F16.gguf models-custom/Qwen3-0.6B-Q4_K_M.gguf Q4_K_M
 ```
 
 ```console
@@ -18,6 +16,7 @@ python convert_hf_to_gguf.py models-custom/Arch-Agent-1.5B --outfile models-cust
 
 ```console
 python convert_hf_to_gguf.py models-custom/xLAM-2-3b-fc-r --outfile models-custom/xLAM-2-3b-fc-r-F16.gguf --outtype f16
+./build/bin/llama-quantize models-custom/xLAM-2-3b-fc-r-F16.gguf models-custom/xLAM-2-3b-fc-r-Q4_K_M.gguf Q4_K_M
 ./build/bin/llama-quantize models-custom/xLAM-2-3b-fc-r-F16.gguf models-custom/xLAM-2-3b-fc-r-Q4_K_S.gguf Q4_K_S
 ```
 
@@ -59,16 +58,17 @@ With image
 # Run model with tools
 
 Model options:
-* Arch-Agent-1.5B-Q4_K_S.gguf
 * Arch-Agent-3B-Q4_K_S.gguf
 * Arch-Function-3B-Q4_K_S.gguf
-* xLAM-2-1B-fc-r-Q4_K_S.gguf
+* Arch-Agent-1.5B-Q4_K_S.gguf
+* xLAM-2-1B-fc-r-Q4_K_M.gguf
 * xLAM-2-3b-fc-r-Q4_K_S.gguf
+* Qwen3-0.6B-Q4_K_M.gguf
 
 Sample with tool definition in JSON:
 
 ```console
-llama-cli -m models-custom/xLAM-2-1B-fc-r-Q4_K_S.gguf \
+llama-cli -m models-custom/Qwen3-0.6B-Q4_K_M.gguf \
 --color \
 -c 4096 \
 --temp 0.7 \
@@ -93,6 +93,35 @@ Do not use any other format. If you can answer without a tool, respond directly 
 User: what is the weather in Seattle? Answer with unit of fahrenheit
 Assistant: "
 ```
+
+
+(Simplify) Sample with tool definition in JSON:
+
+```console
+llama-cli -m models-custom/Qwen3-0.6B-Q4_K_M.gguf \
+--temp 0 \
+--repeat_penalty 1.1 \
+-p "You are a helpful assistant with access to the following tools:
+
+tools:
+- name: get_current_weather
+  description: Get the current weather in a given location.
+  parameters:
+    location: (string) The city and state, e.g., San Francisco, CA.
+    unit: (string, optional) The unit of temperature, either \"celsius\" or \"fahrenheit\".
+
+You can use these tools to answer user questions. When you need to use a tool, respond with a JSON object in the following format:
+{
+  \"tool_name\": \"name of the tool\",
+  \"tool_args\": { \"argument1\": \"value1\", \"argument2\": \"value2\" }
+}
+Do not use any other format. If you can answer without a tool, respond directly to the user.
+
+User: what is the weather in Seattle? Answer with unit of fahrenheit
+Assistant: "
+```
+
+
 
 Sample with tool definition in XML:
 

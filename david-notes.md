@@ -37,3 +37,58 @@ snapshot_download(repo_id=model_id, local_dir="llama3.3_70B")
 
 * Command: `./build-xcframework.sh`
 * Draft `build-apple/llama.xcframework` to xCode
+
+# iOS vs llama-cli
+
+## How to build llama-cli with Xcode:
+* Create folder `build.my_macos`
+* In folder `build.my_macos`, run `cmake -G Xcode ..`
+
+## init from iOS
+(Swift) LlamaState::init()
+* (Swift) loadDefaultModel
+    * (Swift) loadModel
+        * (Swift) LlamaContext::create_context
+            * (C++) llama_backend_init
+                * (C++) ggml_init
+            * (C++) llama_model_default_params
+            * (C++) llama_model_load_from_file
+            * (C++) llama_context_default_params
+            * (C++) llama_init_from_model
+            * (Swift) LlamaContext::init() 
+
+## chat from iOS
+(Swift) LlamaState::complete
+* (Swift) llamaContext::completion_init
+    * (Swift) llamaContext::tokenize
+        * (C++) llama_tokenize
+    * (C++) llama_n_ctx
+    * (C++) llama_batch_clear
+    * (C++) llama_batch_add
+    * (C++) llama_decode
+* (Swift) llamaContext::completion_loop
+    * (C++) llama_sampler_sample
+    * (Swift) token_to_piece
+        * (C++) llama_token_to_piece
+    * (Swift) llama_batch_clear
+    * (Swift) llama_batch_add
+    * (C++) llama_decode
+* (Swift) llamaContext::clear
+
+## init & chat from llama-cli
+* (C++) main
+    * (C++) common_init -> only for logging
+    * (C++) llama_backend_init
+        * (C++) ggml_init
+    * (C++) llama_numa_init
+    * (C++) common_init_from_params
+        * (C++) common_model_params_to_llama
+        * (C++) llama_model_load_from_file
+        * (C++) llama_model_get_vocab
+        * (C++) common_context_params_to_llama
+        * (C++) llama_init_from_model
+    * (C++) llama_get_memory
+    * (C++) llama_model_get_vocab
+    * (C++) common_chat_templates_init
+    * (C++) ggml_backend_dev_by_type
+
