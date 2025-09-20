@@ -22,7 +22,8 @@ python convert_hf_to_gguf.py models-custom/xLAM-2-3b-fc-r --outfile models-custo
 
 # Run model
 ```console
-llama-cli -m ./models-custom/Qwen2-VL-2B-Instruct-F16.gguf -cnv -p "You are a helpful assistant"
+llama-cli -m /Users/weiwu/Workspaces/OpenSource/llama.cpp/models-custom/Arch-Agent-1.5B-Q4_K_S.gguf -cnv -p "Tell me a joke"
+llama-cli -m /Users/weiwu/Workspaces/OpenSource/llama.cpp/models-custom/Arch-Agent-1.5B-Q4_K_S.gguf
 ```
 
 # Run multimodal model
