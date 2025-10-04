@@ -152,3 +152,13 @@ For each function call, return a json object with function name and arguments wi
 user:
 what is the weather in Seattle?"
 ```
+
+# Tutorials
+## tutorial : compute embeddings using llama.cpp
+https://github.com/ggml-org/llama.cpp/discussions/7712
+
+* In folder `models-custom`, run `git clone https://huggingface.co/Snowflake/snowflake-arctic-embed-s`
+* `python convert_hf_to_gguf.py models-custom/snowflake-arctic-embed-s --outfile models-custom/snowflake-arctic-embed-s.gguf`
+* `./build/bin/llama-quantize models-custom/snowflake-arctic-embed-s.gguf models-custom/snowflake-arctic-embed-s-q8_0.gguf q8_0`
+* `./build/bin/llama-embedding -m models-custom/snowflake-arctic-embed-s-q8_0.gguf -e -p "Hello world" --verbose-prompt -ngl 99`
+* `./build/bin/llama-embedding -m models-custom/snowflake-arctic-embed-s.gguf -e -p "Hello world" --verbose-prompt -ngl 99`
