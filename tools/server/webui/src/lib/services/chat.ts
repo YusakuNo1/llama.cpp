@@ -164,7 +164,7 @@ export class ChatService {
 			const currentConfig = config();
 			const apiKey = currentConfig.apiKey?.toString().trim();
 
-			const response = await fetch(`/v1/chat/completions`, {
+			const response = await fetch(`./v1/chat/completions`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
@@ -264,12 +264,14 @@ export class ChatService {
 		let lastTimings: ChatMessageTimings | undefined;
 
 		try {
+			let chunk = '';
 			while (true) {
 				const { done, value } = await reader.read();
 				if (done) break;
 
-				const chunk = decoder.decode(value, { stream: true });
+				chunk += decoder.decode(value, { stream: true });
 				const lines = chunk.split('\n');
+				chunk = lines.pop() || ''; // Save incomplete line for next read
 
 				for (const line of lines) {
 					if (line.startsWith('data: ')) {
@@ -531,7 +533,7 @@ export class ChatService {
 			const currentConfig = config();
 			const apiKey = currentConfig.apiKey?.toString().trim();
 
-			const response = await fetch(`/props`, {
+			const response = await fetch(`./props`, {
 				headers: {
 					'Content-Type': 'application/json',
 					...(apiKey ? { Authorization: `Bearer ${apiKey}` } : {})

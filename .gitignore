@@ -153,6 +153,6 @@ poetry.toml
 /run-chat.sh
 .ccache/
 
-# Code Workspace
+# IDE
 *.code-workspace
-
+.windsurf/
