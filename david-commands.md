@@ -20,12 +20,20 @@ python convert_hf_to_gguf.py models-custom/xLAM-2-3b-fc-r --outfile models-custo
 ./build/bin/llama-quantize models-custom/xLAM-2-3b-fc-r-F16.gguf models-custom/xLAM-2-3b-fc-r-Q4_K_S.gguf Q4_K_S
 ```
 
+```console
+# Qwen3.5 9B
+python convert_hf_to_gguf.py models-custom/Qwen3.5-9B --outfile models-custom/Qwen3.5-9B-F16.gguf --outtype f16
+./build/bin/Release/llama-quantize models-custom/Qwen3.5-9B-F16.gguf models-custom/Qwen3.5-9B-Q4_K_M.gguf Q4_K_M
+./build/bin/llama-quantize models-custom/Qwen3.5-9B-F16.gguf models-custom/Qwen3.5-9B-Q4_K_S.gguf Q4_K_S
+```
+
 # Run model
 ```console
 llama-cli -m /Users/weiwu/Workspaces/OpenSource/llama.cpp/models-custom/Arch-Agent-1.5B-Q4_K_S.gguf -cnv -p "Tell me a joke"
 llama-cli -m /Users/weiwu/Workspaces/OpenSource/llama.cpp/models-custom/Arch-Agent-1.5B-Q4_K_S.gguf
 llama-cli -m ./models-custom/Qwen3-8B-Q4_K_M.gguf
 llama-cli -m ./models-custom/gemma-3-1b-it-BF16.gguf -cnv -p "Tell me a joke"
+llama-cli -m /Users/weiwu/Workspaces/OpenSource/llama.cpp/models-custom/Qwen3.5-9B-Q4_K_M.gguf -cnv -p "Tell me a joke"
 ```
 
 # Run multimodal model
