@@ -33,7 +33,7 @@ llama-cli -m /Users/weiwu/Workspaces/OpenSource/llama.cpp/models-custom/Arch-Age
 llama-cli -m /Users/weiwu/Workspaces/OpenSource/llama.cpp/models-custom/Arch-Agent-1.5B-Q4_K_S.gguf
 llama-cli -m ./models-custom/Qwen3-8B-Q4_K_M.gguf
 llama-cli -m ./models-custom/gemma-3-1b-it-BF16.gguf -cnv -p "Tell me a joke"
-llama-cli -m /Users/weiwu/Workspaces/OpenSource/llama.cpp/models-custom/Qwen3.5-9B-Q4_K_M.gguf -cnv -p "Tell me a joke"
+llama-cli -m /Users/weiwu/Workspaces/OpenSource/llama.cpp/models-custom/Qwen3.5-9B-Q4_K_M.gguf -cnv -p "Tell me a joke" --reasoning off --flash-attn on
 ```
 
 # Run multimodal model
